@@ -5,7 +5,11 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.Scene;
+import android.transition.TransitionInflater;
+import android.transition.TransitionManager;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -34,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.List
 
         fragmentTransaction.commit();
 
+
     }
 
     @Override
@@ -49,12 +54,22 @@ public class MainActivity extends AppCompatActivity implements ListFragment.List
 //
 //        fragment.SetText((String) (StringWord.getText()));
 
-        TextFragment2 textFragment2 = new TextFragment2();
+        MyTransition myTransition = new MyTransition();
 
-        FragmentManager fragmentManager = getFragmentManager();
+        ViewGroup RootViewGroup = findViewById(R.id.layout_listT);
 
-        fragmentManager.beginTransaction().addToBackStack("SaveF").replace(R.id.layout_listT,textFragment2).
-                setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
+        Scene scene1 = Scene.getSceneForLayout(RootViewGroup,R.layout.fragment_articlecontent,this);
+
+        Scene scene2 = Scene.getSceneForLayout(RootViewGroup,R.layout.fragment_change,this);
+
+        TransitionManager.go(scene1,myTransition);
+//
+//        TextFragment2 textFragment2 = new TextFragment2();
+//
+//        FragmentManager fragmentManager = getFragmentManager();
+//
+//        fragmentManager.beginTransaction().addToBackStack("SaveF").replace(R.id.layout_listT,textFragment2).
+//                setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE).commit();
 
 
 //        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -71,7 +86,6 @@ public class MainActivity extends AppCompatActivity implements ListFragment.List
 //        TextView StringWord = view.findViewById(R.id.TextString);
 
 //        fragment.SetText((String) (StringWord.getText()));
-
 
     }
 
