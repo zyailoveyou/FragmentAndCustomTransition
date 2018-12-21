@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.List
     private ListView mListSelect;
     private TextFragment mMyTextFragment;
     private ListFragment mMyListFragment;
+    private boolean ToWhichScence;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,60 +33,31 @@ public class MainActivity extends AppCompatActivity implements ListFragment.List
 
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
         fragmentTransaction.add(R.id.layout_listF, mMyListFragment);
         fragmentTransaction.add(R.id.layout_listT, mMyTextFragment);
-
         fragmentTransaction.commit();
 
+        ToWhichScence=false;
 
     }
 
     @Override
     public void OnClickItem(AdapterView<?> parent, View view, int position, long id) {
 
-//        TextFragment fragment = new TextFragment();
-//
-//        FragmentManager fragmentManager = getFragmentManager();
-//
-//        fragment = (TextFragment) (fragmentManager.findFragmentById(R.id.ListT));
-//
-//        TextView StringWord = view.findViewById(R.id.TextString);
-//
-//        fragment.SetText((String) (StringWord.getText()));
-
         MyTransition myTransition = new MyTransition();
 
         ViewGroup RootViewGroup = findViewById(R.id.layout_listT);
+
+        RootViewGroup.getX();
+        RootViewGroup.getWidth();
 
         Scene scene1 = Scene.getSceneForLayout(RootViewGroup,R.layout.fragment_articlecontent,this);
 
         Scene scene2 = Scene.getSceneForLayout(RootViewGroup,R.layout.fragment_change,this);
 
-        TransitionManager.go(scene1,myTransition);
-//
-//        TextFragment2 textFragment2 = new TextFragment2();
-//
-//        FragmentManager fragmentManager = getFragmentManager();
-//
-//        fragmentManager.beginTransaction().addToBackStack("SaveF").replace(R.id.layout_listT,textFragment2).
-//                setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE).commit();
+            TransitionManager.go(scene2,myTransition);
 
-
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
-
-//        fragmentTransaction.remove(fragment);
-
-//        fragmentTransaction.replace(,fragment);
-//
-//        fragmentTransaction.commit();
-
-//        fragment = (TextFragment) (fragmentManager.findFragmentById(R.id.ListT));
-//
-//        TextView StringWord = view.findViewById(R.id.TextString);
-
-//        fragment.SetText((String) (StringWord.getText()));
+//        TransitionManager.go(scene2);
 
     }
 
