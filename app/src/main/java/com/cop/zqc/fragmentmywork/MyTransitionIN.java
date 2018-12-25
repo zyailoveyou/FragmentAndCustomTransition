@@ -9,22 +9,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
-public class MyTransition extends Transition {
+public class MyTransitionIN extends Transition {
 
-//    private static final String MyTransition_X= "com.cop.zqc.fragmentmywork:MyTransition:X";
-//    private static final String MyTransition_Y= "com.cop.zqc.fragmentmywork:MyTransition:Y";
-    private static final String MyTransition_MovingDestence= "com.cop.zqc.fragmentmywork:MyTransition:Width";
-    private int mStartLocationX;
-    //    private static final String MyTransition_Height= "com.cop.zqc.fragmentmywork:MyTransition:Width";
+
+    private static final String MyTransition_MovingDestenceIN= "com.cop.zqc.fragmentmywork:MyTransitionIN:Width";
 
     @Override
     public void captureStartValues(TransitionValues transitionValues) {
-        transitionValues.values.put(MyTransition_MovingDestence,transitionValues.view.getWidth());
+        transitionValues.values.put(MyTransition_MovingDestenceIN,transitionValues.view.getWidth());
     }
 
     @Override
     public void captureEndValues(TransitionValues transitionValues) {
-        transitionValues.values.put(MyTransition_MovingDestence,0);
+        transitionValues.values.put(MyTransition_MovingDestenceIN,0);
     }
 
 //    private void captureValues(TransitionValues transitionValue) {
@@ -43,32 +40,31 @@ public class MyTransition extends Transition {
             return null;
         }
 
-        final View StartView = startValues.view;
-        final View EndView = endValues.view;
 
+        final View EndView = endValues.view;
 
 //        int StartViewX = (int)startValues.values.get(MyTransition_X);
 //        int StartViewY = (int)startValues.values.get(MyTransition_Y);
 //        int EndViewX = (int)endValues.values.get(MyTransition_X);
 //        int EndViewY = (int)endValues.values.get(MyTransition_Y);
-        int StartViewMoving = (int)startValues.values.get(MyTransition_MovingDestence);
-        int EndViewMoving = (int)endValues.values.get(MyTransition_MovingDestence);
+        int StartViewMoving = (int)startValues.values.get(MyTransition_MovingDestenceIN);
+        int EndViewMoving = (int)endValues.values.get(MyTransition_MovingDestenceIN);
 
 
-        ValueAnimator StartViewMoveOut = ValueAnimator.ofFloat(StartViewMoving,EndViewMoving);
-        StartViewMoveOut.setDuration(600);
-        StartViewMoveOut.setInterpolator(new AccelerateDecelerateInterpolator());
-        StartViewMoveOut.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator StartViewMoveIN = ValueAnimator.ofFloat(StartViewMoving,EndViewMoving);
+        StartViewMoveIN.setDuration(600);
+        StartViewMoveIN.setInterpolator(new AccelerateDecelerateInterpolator());
+        StartViewMoveIN.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
 
-                StartView.setTranslationX((Float) animation.getAnimatedValue());
+                EndView.setTranslationX((Float) animation.getAnimatedValue());
 
             }
         });
 
 
-        ValueAnimator EndViewMoveIn = ValueAnimator.ofFloat(StartViewMoving,EndViewMoving);
+//        ValueAnimator EndViewMoveIn = ValueAnimator.ofFloat(StartViewMoving,EndViewMoving);
 //        EndViewMoveIn.setDuration(600);
 //        EndViewMoveIn.setInterpolator(new AccelerateDecelerateInterpolator());
 //        EndViewMoveIn.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -80,11 +76,11 @@ public class MyTransition extends Transition {
 //            }
 //        });
 
-        AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playSequentially(StartViewMoveOut,EndViewMoveIn);
-        return animatorSet;
+//        AnimatorSet animatorSet = new AnimatorSet();
+//        animatorSet.playSequentially(StartViewMoveOut,EndViewMoveIn);
+//        return animatorSet;
 
-//        return StartViewMoveOut;
+        return StartViewMoveIN;
 
     }
 }
