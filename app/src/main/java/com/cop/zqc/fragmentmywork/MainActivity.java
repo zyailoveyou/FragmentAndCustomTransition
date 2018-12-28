@@ -45,22 +45,38 @@ public class MainActivity extends AppCompatActivity implements ListFragment.List
 
         MyTransitionIN myTransitionIN = new MyTransitionIN();
         MyTransitionOUT myTransitionOUT = new MyTransitionOUT();
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        mMyTextFragment.setExitTransition(myTransitionOUT);
-        fragmentTransaction.remove(mMyTextFragment);
-        fragmentTransaction.commit();
+//        FragmentManager fragmentManager = getFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        mMyTextFragment.setExitTransition(myTransitionOUT);
+//        fragmentTransaction.remove(mMyTextFragment);
+//        fragmentTransaction.commit();
 
-//        ViewGroup RootViewGroup = findViewById(R.id.layout_listT);
-//
-//        RootViewGroup.getX();
-//        RootViewGroup.getWidth();
-//
-//        Scene scene1 = Scene.getSceneForLayout(RootViewGroup,R.layout.fragment_articlecontent,this);
-//
-//        Scene scene2 = Scene.getSceneForLayout(RootViewGroup,R.layout.fragment_change,this);
-//
-//            TransitionManager.go(scene2,myTransitionOUT);
+        ViewGroup RootViewGroup = findViewById(R.id.layout_listT);
+
+        RootViewGroup.getX();
+        RootViewGroup.getWidth();
+
+        Scene scene1 = Scene.getSceneForLayout(RootViewGroup,R.layout.fragment_articlecontent,this);
+
+        Scene scene2 = Scene.getSceneForLayout(RootViewGroup,R.layout.fragment_change,this);
+
+
+
+
+       if (ToWhichScence == false) {
+           TransitionManager.go(scene2, myTransitionOUT);
+           ToWhichScence = true;
+       }
+
+        else
+            {
+
+            TransitionManager.go(scene1,myTransitionOUT);
+                ToWhichScence = false;
+        }
+
+
+
 
 
     }

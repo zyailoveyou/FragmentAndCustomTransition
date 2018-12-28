@@ -24,13 +24,7 @@ public class MyTransitionIN extends Transition {
         transitionValues.values.put(MyTransition_MovingDestenceIN,0);
     }
 
-//    private void captureValues(TransitionValues transitionValue) {
-//        // Capture the property values of views for later use
-////        transitionValue.values.put(MyTransition_X, transitionValue.view.getX());
-////        transitionValue.values.put(MyTransition_Y, transitionValue.view.getY());
-//        transitionValue.values.put(MyTransition_Width, transitionValue.view.getWidth());
-//        transitionValue.values.put(MyTransition_Height, transitionValue.view.getHeight());
-//    }
+
 
     @Override
     public Animator createAnimator(ViewGroup sceneRoot, final TransitionValues startValues, TransitionValues endValues) {
@@ -40,21 +34,16 @@ public class MyTransitionIN extends Transition {
             return null;
         }
 
-
         final View EndView = endValues.view;
 
-//        int StartViewX = (int)startValues.values.get(MyTransition_X);
-//        int StartViewY = (int)startValues.values.get(MyTransition_Y);
-//        int EndViewX = (int)endValues.values.get(MyTransition_X);
-//        int EndViewY = (int)endValues.values.get(MyTransition_Y);
         int StartViewMoving = (int)startValues.values.get(MyTransition_MovingDestenceIN);
         int EndViewMoving = (int)endValues.values.get(MyTransition_MovingDestenceIN);
 
 
-        ValueAnimator StartViewMoveIN = ValueAnimator.ofFloat(StartViewMoving,EndViewMoving);
-        StartViewMoveIN.setDuration(600);
-        StartViewMoveIN.setInterpolator(new AccelerateDecelerateInterpolator());
-        StartViewMoveIN.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator StartViewMoveOut = ValueAnimator.ofFloat(EndViewMoving,StartViewMoving);
+        StartViewMoveOut.setDuration(600);
+        StartViewMoveOut.setInterpolator(new AccelerateDecelerateInterpolator());
+        StartViewMoveOut.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
 
@@ -64,23 +53,24 @@ public class MyTransitionIN extends Transition {
         });
 
 
-//        ValueAnimator EndViewMoveIn = ValueAnimator.ofFloat(StartViewMoving,EndViewMoving);
-//        EndViewMoveIn.setDuration(600);
-//        EndViewMoveIn.setInterpolator(new AccelerateDecelerateInterpolator());
-//        EndViewMoveIn.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-//            @Override
-//            public void onAnimationUpdate(ValueAnimator animation) {
-//
-//                EndView.setX((float)animation.getAnimatedValue());
-//
-//            }
-//        });
+        ValueAnimator EndViewMoveIn = ValueAnimator.ofFloat(StartViewMoving,EndViewMoving);
+        EndViewMoveIn.setDuration(600);
+        EndViewMoveIn.setInterpolator(new AccelerateDecelerateInterpolator());
+        EndViewMoveIn.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
 
-//        AnimatorSet animatorSet = new AnimatorSet();
-//        animatorSet.playSequentially(StartViewMoveOut,EndViewMoveIn);
-//        return animatorSet;
+                EndView.setTranslationX((float)animation.getAnimatedValue());
 
-        return StartViewMoveIN;
+            }
+        });
+
+
+        AnimatorSet animatorSet = new AnimatorSet();
+
+        animatorSet.playSequentially(StartViewMoveOut,EndViewMoveIn);
+
+        return animatorSet;
 
     }
 }
