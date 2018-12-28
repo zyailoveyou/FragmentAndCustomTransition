@@ -9,7 +9,7 @@
         android:id="@+id/Introduction"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimaryDark"
         android:fontFamily="casual"
         android:text="TextView2"
         android:textSize="50dp"

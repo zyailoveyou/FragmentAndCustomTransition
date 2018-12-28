@@ -1,5 +1,6 @@
 package com.cop.zqc.fragmentmywork;
 
+import android.app.ActionBar;
 import android.app.FragmentManager;
 
 import android.app.FragmentTransaction;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity implements ListFragment.ListViewOnClick {
 
@@ -23,6 +25,9 @@ public class MainActivity extends AppCompatActivity implements ListFragment.List
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        android.support.v7.widget.Toolbar MyToolBar = findViewById(R.id.MyToolBar);
+        setSupportActionBar(MyToolBar);
 
         mMyTextFragment = new TextFragment();
         mMyListFragment = new ListFragment();
@@ -45,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.List
 
         MyTransitionIN myTransitionIN = new MyTransitionIN();
         MyTransitionOUT myTransitionOUT = new MyTransitionOUT();
+        android.support.v7.app.ActionBar MyactionBar = getSupportActionBar();
 //        FragmentManager fragmentManager = getFragmentManager();
 //        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 //        mMyTextFragment.setExitTransition(myTransitionOUT);
@@ -61,11 +67,10 @@ public class MainActivity extends AppCompatActivity implements ListFragment.List
         Scene scene2 = Scene.getSceneForLayout(RootViewGroup,R.layout.fragment_change,this);
 
 
-
-
        if (ToWhichScence == false) {
            TransitionManager.go(scene2, myTransitionOUT);
            ToWhichScence = true;
+           MyactionBar.hide();
        }
 
         else
@@ -73,10 +78,8 @@ public class MainActivity extends AppCompatActivity implements ListFragment.List
 
             TransitionManager.go(scene1,myTransitionOUT);
                 ToWhichScence = false;
+                MyactionBar.show();
         }
-
-
-
 
 
     }
