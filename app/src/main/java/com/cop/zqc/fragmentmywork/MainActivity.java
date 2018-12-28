@@ -27,7 +27,10 @@ public class MainActivity extends AppCompatActivity implements ListFragment.List
         setContentView(R.layout.activity_main);
 
         android.support.v7.widget.Toolbar MyToolBar = findViewById(R.id.MyToolBar);
-        setSupportActionBar(MyToolBar);
+
+        MyToolBar.inflateMenu(R.menu.activity_main);
+
+
 
         mMyTextFragment = new TextFragment();
         mMyListFragment = new ListFragment();
