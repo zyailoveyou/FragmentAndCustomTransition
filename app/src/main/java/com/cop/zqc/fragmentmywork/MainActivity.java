@@ -1,6 +1,5 @@
 package com.cop.zqc.fragmentmywork;
 
-import android.app.ActionBar;
 import android.app.FragmentManager;
 
 import android.app.FragmentTransaction;
@@ -8,11 +7,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.transition.Scene;
 import android.transition.TransitionManager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toolbar;
+
+import java.lang.reflect.Method;
 
 public class MainActivity extends AppCompatActivity implements ListFragment.ListViewOnClick {
 
@@ -20,17 +23,19 @@ public class MainActivity extends AppCompatActivity implements ListFragment.List
     private TextFragment mMyTextFragment;
     private ListFragment mMyListFragment;
     private boolean ToWhichScence;
+    private android.support.v7.widget.Toolbar mMyToolBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        android.support.v7.widget.Toolbar MyToolBar = findViewById(R.id.MyToolBar);
+        mMyToolBar = findViewById(R.id.MyToolBar);
+//        mMyToolBar.setTitle("Worinima");
 
-        MyToolBar.inflateMenu(R.menu.activity_main);
+        setSupportActionBar(mMyToolBar);
 
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mMyTextFragment = new TextFragment();
         mMyListFragment = new ListFragment();
@@ -46,7 +51,38 @@ public class MainActivity extends AppCompatActivity implements ListFragment.List
 
         ToWhichScence=false;
 
+        mMyToolBar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                System.out.println("点击了navigation");
+
+
+            }
+        });
+
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu,menu);
+
+        return true;
+
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        return true;
+    }
+
+
 
     @Override
     public void OnClickItem(AdapterView<?> parent, View view, int position, long id) {
@@ -66,7 +102,6 @@ public class MainActivity extends AppCompatActivity implements ListFragment.List
         RootViewGroup.getWidth();
 
         Scene scene1 = Scene.getSceneForLayout(RootViewGroup,R.layout.fragment_articlecontent,this);
-
         Scene scene2 = Scene.getSceneForLayout(RootViewGroup,R.layout.fragment_change,this);
 
 
@@ -80,8 +115,9 @@ public class MainActivity extends AppCompatActivity implements ListFragment.List
             {
 
             TransitionManager.go(scene1,myTransitionOUT);
-                ToWhichScence = false;
-                MyactionBar.show();
+            ToWhichScence = false;
+            MyactionBar.show();
+
         }
 
 

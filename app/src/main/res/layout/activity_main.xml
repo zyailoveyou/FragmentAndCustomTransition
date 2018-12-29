@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    tools:layout_editor_absoluteY="81dp">
+    tools:layout_editor_absoluteY="25dp">
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
@@ -16,20 +16,37 @@
         app:layout_constraintGuide_percent="0.4" />
 
 
-    <android.support.v7.widget.Toolbar
-
+    <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/MyToolBar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:elevation="4dp"
-        android:theme="@style/Theme.AppCompat.Light"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+        app:popupTheme="@style/OverflowMenuStyle">
 
+        <!--android:background="@color/colorPrimary"-->
+        <!--android:elevation="4dp"-->
+        <!--app:logo="@android:drawable/alert_light_frame"-->
+        <!--app:navigationIcon="@mipmap/ic_launcher_round"-->
+        <!--android:theme="@style/Theme.AppCompat.Light.NoActionBar"-->
+        <!--app:subtitle="副标题"-->
+        <!--app:title="主标题"-->
         >
+        <!--<TextView-->
+        <!--android:id="@+id/textView"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:gravity="center_vertical|center_horizontal"-->
+        <!--android:text="wwwww"-->
+        <!--android:textSize="30sp"-->
+        <!--tools:layout_editor_absoluteX="16dp" />-->
 
 
     </android.support.v7.widget.Toolbar>
+
+
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/layout_listF"
@@ -39,7 +56,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@+id/layout_root">
 
     </android.support.constraint.ConstraintLayout>
 
@@ -48,13 +65,11 @@
         android:id="@+id/layout_listT"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@color/ok111"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent">
-
-
-    </android.support.constraint.ConstraintLayout>
+        app:layout_constraintTop_toTopOf="@+id/layout_root"></android.support.constraint.ConstraintLayout>
 
 
 </android.support.constraint.ConstraintLayout>

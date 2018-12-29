@@ -11,6 +11,7 @@ import android.transition.TransitionValues;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -24,10 +25,12 @@ public class MyTransitionOUT extends Transition {
     @Override
     public void captureStartValues(TransitionValues transitionValues) {
 
-        if(transitionValues.view instanceof TextView)
-        {
+
+
             transitionValues.values.put(MyTransition_MovingDestenceOUT,0);
             transitionValues.values.put(MyTransition_BackGroud,transitionValues.view.getBackground());
+            if(transitionValues.view instanceof TextView)
+            {
             transitionValues.values.put(MyTransition_TexT,((String) ((TextView)transitionValues.view).getText()));
 
         }
@@ -36,10 +39,12 @@ public class MyTransitionOUT extends Transition {
     @Override
     public void captureEndValues(TransitionValues transitionValues) {
 
-        if(transitionValues.view instanceof TextView)
-        {
+
+
             transitionValues.values.put(MyTransition_MovingDestenceOUT,transitionValues.view.getWidth());
             transitionValues.values.put(MyTransition_BackGroud,transitionValues.view.getBackground());
+        if(transitionValues.view instanceof TextView)
+        {
             transitionValues.values.put(MyTransition_TexT,((TextView) transitionValues.view).getText());
         }
 
@@ -72,9 +77,10 @@ public class MyTransitionOUT extends Transition {
             public void onAnimationUpdate(ValueAnimator animation) {
 
                 EndView.setTranslationX((Float) animation.getAnimatedValue());
-                EndView.setBackground(StartColor);
-                ((TextView)EndView).setText(StartText);
-
+                if(EndView instanceof TextView) {
+                    EndView.setBackground(StartColor);
+                    ((TextView) EndView).setText(StartText);
+                }
             }
         });
 
@@ -86,8 +92,10 @@ public class MyTransitionOUT extends Transition {
             public void onAnimationUpdate(ValueAnimator animation) {
 
                 EndView.setTranslationX((Float) animation.getAnimatedValue());
-                EndView.setBackground(EndColor);
-                ((TextView)EndView).setText(EndText);
+                if(EndView instanceof TextView) {
+                    EndView.setBackground(EndColor);
+                    ((TextView) EndView).setText(EndText);
+                }
 
             }
         });

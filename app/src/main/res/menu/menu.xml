@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".MainActivity"
+    >
+
+    <item
+        android:id="@+id/two"
+        android:icon="@mipmap/ic_launcher_round"
+        android:orderInCategory="300"
+        android:title="User"
+
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView">
+
+    </item>
+
+
+    <item
+        android:id="@+id/action_favorite"
+        android:icon="@android:drawable/ic_input_add"
+        android:orderInCategory="300"
+        android:title="User"
+        app:showAsAction="ifRoom|collapseActionView">
+
+    </item>
+
+
+    <item
+        android:id="@+id/one"
+        android:icon="@android:drawable/ic_input_add"
+        android:orderInCategory="300"
+        android:title="one"
+        app:showAsAction="never">
+
+    </item>
+
+    <item
+        android:id="@+id/three"
+        android:icon="@android:drawable/ic_input_add"
+        android:orderInCategory="300"
+        android:title="three"
+        app:showAsAction="never">
+
+    </item>
+
+    <item
+        android:id="@+id/flour"
+        android:icon="@android:drawable/ic_input_add"
+        android:orderInCategory="300"
+        android:title="flour"
+        app:showAsAction="never">
+
+    </item>
+
+
+
+
+</menu>
