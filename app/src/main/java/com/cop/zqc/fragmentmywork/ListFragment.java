@@ -2,9 +2,11 @@ package com.cop.zqc.fragmentmywork;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +22,22 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
 
     private ListViewOnClick mListViewOnClick;
 
+    private  MyViewModel mMyViewModel;
+
     public interface ListViewOnClick{
 
         public void OnClickItem(AdapterView<?> parent, View view, int position, long id);
 
     };
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mMyViewModel = ViewModelProviders.of((FragmentActivity) getActivity()).get(MyViewModel.class);
+
+
+    }
 
     @Override
     public void onAttach(Activity activity) {
@@ -71,9 +84,12 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
     @Override
     public void onItemClick(AdapterView<?> parent, View theview, int position, long id) {
 
-        mListViewOnClick.OnClickItem(parent,theview,position,id);
+        String Text = (String) ((TextView)theview).getText();
+
+        mMyViewModel.SetSelectView(Text);
+
+//        mListViewOnClick.OnClickItem(parent,theview,position,id);
 
     }
-
 
 }

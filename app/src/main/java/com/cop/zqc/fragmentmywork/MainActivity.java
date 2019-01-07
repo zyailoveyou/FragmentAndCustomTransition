@@ -44,12 +44,11 @@ public class MainActivity extends AppCompatActivity implements ListFragment.List
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         fragmentTransaction.add(R.id.layout_listF, mMyListFragment);
-
         fragmentTransaction.add(R.id.layout_listT, mMyTextFragment);
 
         fragmentTransaction.commit();
 
-        ToWhichScence=false;
+        ToWhichScence = false;
 
         mMyToolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,12 +67,11 @@ public class MainActivity extends AppCompatActivity implements ListFragment.List
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.menu,menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
 
         return true;
 
     }
-
 
 
     @Override
@@ -83,44 +81,58 @@ public class MainActivity extends AppCompatActivity implements ListFragment.List
     }
 
 
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu) {
+        if (menu != null) {
+            if (menu.getClass().getSimpleName().equalsIgnoreCase("MenuBuilder")) {
+                try {
+                    Method method = menu.getClass().getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
+                    method.setAccessible(true);
+                    method.invoke(menu, true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return super.onMenuOpened(featureId, menu);
+    }
+
 
     @Override
     public void OnClickItem(AdapterView<?> parent, View view, int position, long id) {
 
-        MyTransitionIN myTransitionIN = new MyTransitionIN();
-        MyTransitionOUT myTransitionOUT = new MyTransitionOUT();
-        android.support.v7.app.ActionBar MyactionBar = getSupportActionBar();
-//        FragmentManager fragmentManager = getFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        mMyTextFragment.setExitTransition(myTransitionOUT);
-//        fragmentTransaction.remove(mMyTextFragment);
-//        fragmentTransaction.commit();
-
-        ViewGroup RootViewGroup = findViewById(R.id.layout_listT);
-
-        RootViewGroup.getX();
-        RootViewGroup.getWidth();
-
-        Scene scene1 = Scene.getSceneForLayout(RootViewGroup,R.layout.fragment_articlecontent,this);
-        Scene scene2 = Scene.getSceneForLayout(RootViewGroup,R.layout.fragment_change,this);
-
-
-       if (ToWhichScence == false) {
-           TransitionManager.go(scene2, myTransitionOUT);
-           ToWhichScence = true;
-           MyactionBar.hide();
-       }
-
-        else
-            {
-
-            TransitionManager.go(scene1,myTransitionOUT);
-            ToWhichScence = false;
-            MyactionBar.show();
-
-        }
-
+//
+//
+//        MyTransitionOUT myTransitionOUT = new MyTransitionOUT();
+//        android.support.v7.app.ActionBar MyactionBar = getSupportActionBar();
+//
+//
+//        ViewGroup RootViewGroup = findViewById(R.id.layout_listT);
+//
+//        RootViewGroup.getX();
+//        RootViewGroup.getWidth();
+//
+//        Scene scene1 = Scene.getSceneForLayout(RootViewGroup,R.layout.fragment_articlecontent,this);
+//        Scene scene2 = Scene.getSceneForLayout(RootViewGroup,R.layout.fragment_change,this);
+//
+//       if (ToWhichScence == false) {
+//           TransitionManager.go(scene2, myTransitionOUT);
+//           ToWhichScence = true;
+//           MyactionBar.hide();
+//       }
+//
+//        else
+//            {
+//
+//            TransitionManager.go(scene1,myTransitionOUT);
+//            ToWhichScence = false;
+//            MyactionBar.show();
+//
+//        }
+//
+//    }
 
     }
+
 
 }
