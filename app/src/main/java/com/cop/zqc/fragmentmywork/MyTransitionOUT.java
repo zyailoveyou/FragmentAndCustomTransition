@@ -105,6 +105,9 @@ public class MyTransitionOUT extends Transition {
 
         animatorSet.playSequentially(StartViewMoveOut,StartViewMoveIn);
 
+
+
+
         return animatorSet;
     }
 
